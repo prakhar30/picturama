@@ -38,6 +38,10 @@ class MainMenu {
                         label: msg('MainMenu_quit'),
                         accelerator: 'Cmd+Q',
                         click: () => this.mainWindow.close()
+                    },
+                    {
+                        label: msg('MainMenu_prakhar'),
+                        click: () => console.log(`Clicked prakhar`)
                     }
                 ]
             },

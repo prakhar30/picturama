@@ -29,6 +29,8 @@ import Grid from './Grid'
 
 import './Library.less'
 
+var nodeConsole = require('console');
+var myConsole = new nodeConsole.Console(process.stdout, process.stderr);
 
 const nonIdealStateMaxWidth = 400
 
@@ -134,6 +136,10 @@ export class Library extends React.Component<Props, State> {
         this.setState({ isShowingInfo: !this.state.isShowingInfo })
     }
 
+    displaySearchText(value: string) {
+        myConsole.log(value)
+    }
+
     updateInfoPhoto() {
         const props = this.props
         const state = this.state
@@ -230,6 +236,7 @@ export class Library extends React.Component<Props, State> {
                     movePhotosToTrash={props.movePhotosToTrash}
                     restorePhotosFromTrash={props.restorePhotosFromTrash}
                     toggleShowInfo={this.toggleShowInfo}
+                    onSearchValueChanged={this.displaySearchText} 
                 />
                 <div className="Library-body">
                     {nonIdealStateProps &&

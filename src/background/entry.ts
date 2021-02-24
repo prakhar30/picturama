@@ -76,6 +76,7 @@ app.on('ready', () => {
         mainWindow.maximize()
     }
 
+    console.log('file://' + __dirname + '/app.html')
     mainWindow.loadURL('file://' + __dirname + '/app.html')
     mainWindow.setTitle('Picturama')
     AppWindowController.init(mainWindow)

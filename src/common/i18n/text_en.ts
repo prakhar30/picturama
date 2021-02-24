@@ -91,10 +91,12 @@ export default {
     LibraryTopBar_emptyTrashQuestion: 'Are you sure you want to empty the trash?',
     LibraryTopBar_moveToTrash: 'Move to trash of operating system',
     LibraryTopBar_emptyTrash: 'Empty trash',
+    LibraryTopBar_randomButton: 'Trying shit out',
 
     MainMenu_version: 'Version {0}',
     MainMenu_settings: 'Settings',
     MainMenu_quit: 'Quit',
+    MainMenu_prakhar: `Prakhar`,
     MainMenu_file: 'File',
     MainMenu_export: 'Export photos',
     MainMenu_scan: 'Scan for images',

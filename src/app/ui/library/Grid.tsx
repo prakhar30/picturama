@@ -20,6 +20,8 @@ import GridSection, { sectionHeadHeight } from './GridSection'
 
 import './Grid.less'
 
+var nodeConsole = require('console');
+var myConsole = new nodeConsole.Console(process.stdout, process.stderr);
 
 const gridSpacerHeight = 1
 
