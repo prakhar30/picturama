@@ -2,7 +2,6 @@ import { ipcRenderer } from 'electron'
 import classNames from 'classnames'
 import React from 'react'
 import { Button, MaybeElement, Alert } from '@blueprintjs/core'
-import SearchField from "react-search-field";
 
 import { PhotoId, Photo, PhotoWork, PhotoSectionId } from 'common/CommonTypes'
 import { msg } from 'common/i18n/i18n'
@@ -27,7 +26,6 @@ interface Props {
     movePhotosToTrash: (photos: Photo[]) => void
     restorePhotosFromTrash: (photos: Photo[]) => void
     toggleShowInfo: () => void
-    onSearchValueChanged: (value: string) => void
 }
 
 interface State {
@@ -69,10 +67,6 @@ export default class LibraryTopBar extends React.Component<Props, State> {
                 <Toolbar.Spacer/>
 
                 {/* <Button text={msg('LibraryTopBar_randomButton')} onClick={() => alert('nice')}/> */}
-                <SearchField
-                    placeholder="Search..."
-                    onChange={this.props.onSearchValueChanged}
-                />
 
                 <Toolbar.Spacer />
 

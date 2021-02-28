@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Popover, Button, IconName, Position, Menu, MenuItem, MenuDivider } from '@blueprintjs/core'
 import classnames from 'classnames'
+import SearchField from "react-search-field";
 
 import { msg } from 'common/i18n/i18n'
 import { TagId, TagById, Device, PhotoFilter } from 'common/CommonTypes'
@@ -11,7 +12,10 @@ import { setLibraryFilter } from 'app/controller/PhotoController'
 import { AppState } from 'app/state/StateTypes'
 
 import './LibraryFilterButton.less'
+import Toolbar from '../widget/Toolbar'
 
+var nodeConsole = require('console');
+var myConsole = new nodeConsole.Console(process.stdout, process.stderr);
 
 type SimpleFilterType = 'all' | 'flagged' | 'trash'
 const simpleFilterTypes: SimpleFilterType[] = [ 'all', 'flagged', 'trash' ]
@@ -48,12 +52,30 @@ export interface Props extends OwnProps, StateProps, DispatchProps {}
 
 export class LibraryFilterButton extends React.Component<Props> {
 
-    private onSimpleFilterClick(type: SimpleFilterType) {
+    constructor(props) {
+        super(props);
+        this.tagNameFortagId = this.tagNameFortagId.bind(this);
+      }
+
+    onSimpleFilterClick(type: SimpleFilterType) {
+        myConsole.log('onSimpleFilterClick', type)
         this.props.setLibraryFilter({ type })
     }
 
-    private onTagFilterClick(tagId: TagId) {
+    onTagFilterClick(tagId: TagId) {
         this.props.setLibraryFilter({ type: 'tag', tagId })
+    }
+
+    tagNameFortagId(tagName: string) {
+        for (const key in this.props.tagById) {
+            let tagTitle = this.props.tagById[key].title
+            let tagId = this.props.tagById[key].id
+            if (tagTitle == tagName) {
+                myConsole.log('found id ', tagId)
+                myConsole.log('found tag ', tagTitle)
+                break
+            }
+        }
     }
 
     render() {
@@ -85,6 +107,15 @@ export class LibraryFilterButton extends React.Component<Props> {
                         )}
                     </>
                 }
+
+                <Toolbar.Spacer />
+
+                <SearchField
+                    placeholder="Search..."
+                    onChange={this.tagNameFortagId}
+                />
+
+                <Toolbar.Spacer />
             </Menu>
         )
 
